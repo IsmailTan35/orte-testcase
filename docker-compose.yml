@@ -1,31 +1,27 @@
 version: "3.8"
 services:
   mysql_server:
-    image: mysql:8.0
-    container_name: mysql-container
+    container_name: orte-mysql_server
+    image: mysql:latest
     environment:
       - MYSQL_DATABASE=test_db
-      - MYSQL_USER=dan
-      - MYSQL_PASSWORD=secret
-      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=orte
     ports:
       - "3306:3306"
-    # volumes:
-    #   - mysql-data:/var/lib/mysql
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin:latest
-  #   container_name: phpmyadmin-container
-  #   links:
-  #     - mysql_server
-  #   ports:
-  #     - "8080:80"
-  #   environment:
-  #     PMA_HOST: mysql_server
-  #     PMA_PORT: 3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-container
+    links:
+      - mysql_server
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql_server
+      PMA_PORT: 3306
+
   backend:
-    image: orte-backend
     container_name: orte-backend
-    restart: always
     build:
       context: ./orte-backend
       dockerfile: Dockerfile
@@ -33,8 +29,19 @@ services:
       - 20000:20000
     depends_on:
       - mysql_server
-    # volumes:
-    #   - ./orte-backend:/usr/local/apps/orte-backend/dev
-    #   - exclude:/usr/local/app/orte-backend/dev/node_modules/
+    environment:
+      - MYSQL_HOST=mysql_server
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=orte
+
+  frontend:
+    container_name: orte-frontend
+    build:
+      context: ./orte-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
 volumes:
   mysql-data:

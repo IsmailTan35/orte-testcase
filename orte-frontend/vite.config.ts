@@ -14,6 +14,10 @@ export default defineConfig({
     alias: [{ find: "@", replacement: path.resolve(".", "src") }],
   },
   server: {
+    host: true,
+    watch: {
+      usePolling: true,
+    },
     port: 3000,
   },
   build: {

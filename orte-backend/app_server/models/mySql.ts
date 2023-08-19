@@ -52,7 +52,7 @@ const database = async () => {
           insertProductValues
         );
         console.info("Added product table.");
-        const insertProductSizeValues = rows.map(size => {
+        const insertProductSizeValues = rows.map((size: any) => {
           return [null, size.id, productResult[0].insertId];
         });
         await connection.query(queries.insertProductSize, [

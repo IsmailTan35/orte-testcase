@@ -6,7 +6,7 @@ const apiController = (app: any) => {
     res.send("Orte TestCase - Hello World!");
   });
 
-  const publicImagePath = path.join(__dirname + "/@/pictures");
+  const publicImagePath = path.join(__dirname + "/../../pictures");
   app.use("/img", express.static(publicImagePath));
 };
 

@@ -6,9 +6,16 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Topbar />
-        <Sizes />
-        <Products />
+        <div
+          style={{
+            height: "100%",
+            flex: "1 1 auto",
+          }}
+        >
+          <Topbar />
+          <Sizes />
+          <Products />
+        </div>
       </div>
     </>
   );
