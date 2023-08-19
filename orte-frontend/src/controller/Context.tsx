@@ -1,6 +1,4 @@
-import React from "react";
 import { io } from "socket.io-client";
-import { Socket } from "socket.io-client/debug";
 
 function url(): string {
   if (typeof window === "undefined") return "";
@@ -12,17 +10,15 @@ function url(): string {
     ? "ortetestcase.ismailtan.dev"
     : `${protocol}//${hostname}:20000`;
 }
-const socketUri = url()
-  .replace("http://", "")
-  .replace("https://", "")
-  .replace("/", "");
+
+const socketUri = url();
 
 const client = io(socketUri, {
+  transports: ["websocket"],
   reconnection: true,
   reconnectionDelay: 2500,
   reconnectionAttempts: 10,
   forceNew: true,
 });
-const SocketContext = React.createContext<Socket | null>(null);
 
-export { SocketContext, client, url };
+export { client, url };

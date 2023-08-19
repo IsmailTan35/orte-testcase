@@ -1,13 +1,17 @@
-import { httpServer, webSocket } from "./app_server/utils/protocols";
+import { Express, httpServer, webSocket } from "./app_server/utils/protocols";
 
-import controllerSocket from "./app_server/controller/socketController";
+import socketController from "./app_server/controller/socketController";
+import apiContoller from "./app_server/controller/apiController";
 import mongoDb from "./app_server/models/mongoDB";
 import mySql from "./app_server/models/mySql";
 
 const port = 20 * 1000;
-const db = mongoDb();
-const mySqlDb = mySql();
-const server = httpServer(port);
+// const db = mongoDb();
+const express = Express();
+const server = httpServer(express, port);
 const socket = webSocket(server);
 
-controllerSocket(socket, mySqlDb);
+socketController(socket, "mySqlDb");
+apiContoller(express);
+
+const mySqlDb = mySql();

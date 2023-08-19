@@ -1,7 +1,11 @@
 import { createServer as httpCreate } from "http";
 import { Server as socketServer } from "socket.io";
-const httpServer = (port: any) => {
-  const httpServer = httpCreate();
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+
+const httpServer = (express: any, port: any) => {
+  const httpServer = httpCreate(express);
   httpServer.listen(port, () => {
     console.info(new Date() + " Http server is listening on port " + port);
   });
@@ -17,4 +21,14 @@ const webSocket = (httpServer: any) => {
   return io;
 };
 
-export { httpServer, webSocket };
+const Express = () => {
+  const app = express();
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.use(cors());
+
+  return app;
+};
+
+export { httpServer, webSocket, Express };

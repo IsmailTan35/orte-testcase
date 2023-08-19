@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  mysql_server:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=test_db
+      - MYSQL_ROOT_PASSWORD=orte
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-container
+    links:
+      - mysql_server
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql_server
+      PMA_PORT: 3306
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 20000:20000
+    volumes:
+      - .:/app
+      - "/app/node_modules"
+    depends_on:
+      - mysql_server
+    environment:
+      - MYSQL_HOST=mysql_server
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=orte

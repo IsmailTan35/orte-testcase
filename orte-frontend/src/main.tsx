@@ -2,13 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./assets/css/index.css";
-import { SocketContext, client } from "./controller/Context.tsx";
+import SocketProvider from "./controller/SocketProvider.tsx";
+import SocketController from "./controller/SocketController.tsx";
+import { Provider } from "react-redux";
+import { store } from "./redux/index.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <SocketContext.Provider value={client}>
-      <App />
-    </SocketContext.Provider>
+    <SocketProvider>
+      <Provider store={store}>
+        <SocketController />
+        <App />
+      </Provider>
+    </SocketProvider>
   </React.StrictMode>
 );
