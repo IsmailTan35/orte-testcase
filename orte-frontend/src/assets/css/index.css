@@ -10,3 +10,9 @@ body {
   background: #3d3f69d6;
   overflow: hidden auto;
 }
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}

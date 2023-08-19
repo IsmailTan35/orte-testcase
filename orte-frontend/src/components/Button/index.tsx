@@ -1,4 +1,4 @@
-import "../../assets/css/button.css";
+import "@/assets/css/button.css";
 interface IButton {
   text: string;
   onClick: () => void;
@@ -9,7 +9,6 @@ const Button = (props: IButton) => {
   return (
     <>
       <button onClick={() => onClick()} className="button-wrapper">
-        {" "}
         {text}
       </button>
     </>

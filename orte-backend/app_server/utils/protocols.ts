@@ -1,10 +1,10 @@
-import { createServer as httpCreate } from "http";
+import { Server, createServer as httpCreate } from "http";
 import { Server as socketServer } from "socket.io";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-const httpServer = (express: any, port: any) => {
+const httpServer = (express: any, port: number) => {
   const httpServer = httpCreate(express);
   httpServer.listen(port, () => {
     console.info(new Date() + " Http server is listening on port " + port);
@@ -12,7 +12,7 @@ const httpServer = (express: any, port: any) => {
   return httpServer;
 };
 
-const webSocket = (httpServer: any) => {
+const webSocket = (httpServer: Server) => {
   const io = new socketServer(httpServer, {
     cors: {
       origin: "*",

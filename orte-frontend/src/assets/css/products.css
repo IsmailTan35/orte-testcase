@@ -1,0 +1,28 @@
+.products-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-title {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 20px;
+}
+
+.products-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+.products-no-product {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 1.125rem;
+  font-weight: bold;
+}

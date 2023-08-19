@@ -1,8 +1,8 @@
-import { useAppSelector } from "../../redux";
-import { useSocket } from "../../controller/SocketProvider";
-import ISize from "../../redux/interface/size";
-import Button from "../../components/Button";
-
+import { useAppSelector } from "@/redux";
+import { useSocket } from "@/controller/SocketProvider";
+import ISize from "@/redux/interface/size";
+import Button from "@/components/Button";
+import "@/assets/css/sizes.css";
 const Sizes = () => {
   const socket = useSocket();
 
@@ -14,24 +14,9 @@ const Sizes = () => {
   return (
     <>
       {" "}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            color: "#fff",
-            fontSize: "1.5rem",
-            padding: "20px",
-          }}
-        >
-          Sizes
-        </div>
-        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+      <div className="sizes-wrapper">
+        <div className="sizes-title">Sizes</div>
+        <div className="sizes-container">
           {sizes.map((size: ISize, idx: number) => {
             return (
               <Button

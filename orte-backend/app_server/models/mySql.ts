@@ -8,13 +8,21 @@ const dbConfig = {
   database: process.env.MYSQL_DATABASE || "test_db",
 };
 
+interface IProduct {
+  id: number;
+  price: string;
+  stock: string;
+  img: string;
+  description: string;
+  size: string[] | string;
+}
 const database = async () => {
   try {
     const connection = await mysql.createConnection(dbConfig);
     await connection.beginTransaction();
 
     const data = await fs.readFile(__dirname + "/../../urunler.json", "utf8");
-    const jsonData = JSON.parse(data).products[0];
+    const jsonData: { [key: string]: IProduct } = JSON.parse(data).products[0];
     console.info("Connected to MySQL server");
 
     await connection.query(queries.createSizesProducts);
@@ -25,7 +33,7 @@ const database = async () => {
 
     await connection.query(queries.insertSize);
 
-    Object.entries(jsonData).forEach(async ([key, product]: any) => {
+    Object.entries(jsonData).forEach(async ([key, product]) => {
       const name = key;
       const price = product.price;
       const stock = product.stock;
@@ -44,7 +52,7 @@ const database = async () => {
           insertProductValues
         );
         console.info("Added product table.");
-        const insertProductSizeValues = rows.map((size: any) => {
+        const insertProductSizeValues = rows.map(size => {
           return [null, size.id, productResult[0].insertId];
         });
         await connection.query(queries.insertProductSize, [

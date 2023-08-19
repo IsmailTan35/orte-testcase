@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSocket } from "./SocketProvider";
-import { productsActions, sizesActions, useAppDispatch } from "../redux";
-import IProduct from "../redux/interface/products";
+import { productsActions, sizesActions, useAppDispatch } from "@/redux";
+import IProduct from "@/redux/interface/products";
 
 const SocketController = () => {
   const socket = useSocket();
@@ -47,7 +47,6 @@ const SocketController = () => {
       dispatch(sizesActions.update(data));
     });
     socket.on("products", (data: IProduct[] | []) => {
-      console.log(data);
       dispatch(productsActions.update(data));
     });
   }

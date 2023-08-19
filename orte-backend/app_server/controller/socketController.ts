@@ -1,5 +1,6 @@
 import * as mysql from "mysql2/promise";
 import queries from "../models/queries";
+
 const dbConfig = {
   host: process.env.MYSQL_HOST || "localhost",
   user: process.env.MYSQL_USER || "root",
@@ -7,11 +8,10 @@ const dbConfig = {
   database: process.env.MYSQL_DATABASE || "test_db",
 };
 
-export default (io: any, mySqlDb: any) => {
-  io.db = mySqlDb;
+export default (io: any) => {
   io.on("connection", (socket: any) => {
     console.info("connected");
-    socket.on("getProducts", async (data: any) => {
+    socket.on("getProducts", async (data: number) => {
       try {
         const connection = await mysql.createConnection(dbConfig);
         try {
@@ -26,11 +26,11 @@ export default (io: any, mySqlDb: any) => {
         }
         connection.end();
       } catch (error: any) {
-        console.log(error.code);
+        console.error(error.code);
       }
     });
 
-    socket.on("getSizes", async (data: any) => {
+    socket.on("getSizes", async () => {
       try {
         const connection = await mysql.createConnection(dbConfig);
         try {
@@ -41,7 +41,7 @@ export default (io: any, mySqlDb: any) => {
           connection.end();
         }
       } catch (error: any) {
-        console.log(error.code);
+        console.error(error.code);
       }
     });
   });

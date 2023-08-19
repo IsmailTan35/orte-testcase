@@ -1,6 +1,6 @@
-import { url } from "../../controller/Context";
-import IProduct from "../../redux/interface/products";
-
+import { url } from "@/controller/Context";
+import IProduct from "@/redux/interface/products";
+import "@/assets/css/card.css";
 interface ICard {
   item: IProduct;
 }
@@ -10,72 +10,17 @@ const Card = (props: ICard) => {
   const { name, description, price, stock, img } = item;
   return (
     <>
-      <div
-        style={{
-          width: "350px",
-          padding: "20px",
-          backgroundColor: "#fff",
-          borderRadius: "10px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "200px",
-            borderRadius: "7px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img
-            src={url() + img}
-            style={{
-              width: "auto",
-              height: "100%",
-            }}
-          ></img>
+      <div className="card-wrapper">
+        <div className="card-img-wrapper">
+          <img src={url() + img} className="card-img"></img>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px 0",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "1.5rem",
-            }}
-          >
-            {name}
-          </div>
-          <div
-            style={{
-              color: "green",
-            }}
-          >
-            {price} $
-          </div>
+        <div className="card-title-wrapper">
+          <div className="card-title">{name}</div>
+          <div className="card-price">{price} $</div>
         </div>
         <div>{description}</div>
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            width: "100%",
-            justifyContent: "flex-end",
-            marginTop: "10px",
-          }}
-        >
-          <div
-            style={{
-              color: "green",
-            }}
-          >
-            Stock:
-          </div>
+        <div className="card-footer">
+          <div className="card-footer-item">Stock:</div>
           <div>{stock}</div>
         </div>
       </div>

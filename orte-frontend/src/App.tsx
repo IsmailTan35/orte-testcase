@@ -5,13 +5,7 @@ import Topbar from "./layouts/Topbar";
 function App() {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexDirection: "column",
-        }}
-      >
+      <div className="wrapper">
         <Topbar />
         <Sizes />
         <Products />

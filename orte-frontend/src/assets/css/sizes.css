@@ -1,0 +1,18 @@
+.sizes-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sizes-title {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 20px;
+}
+
+.sizes-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
