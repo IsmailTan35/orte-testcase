@@ -31,8 +31,8 @@ const database = async () => {
       const stock = product.stock;
       const img = product.img;
       const description = product.description;
-      const sizes: any[] = [...product.size];
-      const selectSizeIDQuery = `SELECT size_id FROM sizes WHERE size_name IN (${sizes
+      const sizes = [...product.size];
+      const selectSizeIDQuery = `SELECT id FROM sizes WHERE name IN (${sizes
         .map(size => `'${size}'`)
         .join(", ")})`;
       const [rows]: any = await connection.execute(selectSizeIDQuery);
@@ -45,12 +45,11 @@ const database = async () => {
         );
         console.info("Added product table.");
         const insertProductSizeValues = rows.map((size: any) => {
-          return [null, size.size_id, productResult[0].insertId];
+          return [null, size.id, productResult[0].insertId];
         });
-        const sizesProductsResult = await connection.query(
-          queries.insertProductSize,
-          [insertProductSizeValues]
-        );
+        await connection.query(queries.insertProductSize, [
+          insertProductSizeValues,
+        ]);
       } catch (err: any) {
         console.error("Error adding product:", err.code);
       } finally {
