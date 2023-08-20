@@ -1,12 +1,6 @@
 import * as mysql from "mysql2/promise";
 import queries from "../models/queries";
-
-const dbConfig = {
-  host: process.env.MYSQL_HOST || "localhost",
-  user: process.env.MYSQL_USER || "root",
-  password: process.env.MYSQL_PASSWORD || "root",
-  database: process.env.MYSQL_DATABASE || "test_db",
-};
+import dbConfig from "../models/dbConfig";
 
 export default (io: any) => {
   io.on("connection", (socket: any) => {
