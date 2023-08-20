@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   mysql_server:
+    container_name: mysql_server
     image: mysql:latest
     environment:
       - MYSQL_DATABASE=test_db
