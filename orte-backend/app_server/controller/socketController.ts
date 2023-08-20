@@ -32,6 +32,7 @@ export default (io: any) => {
 
     socket.on("getSizes", async () => {
       try {
+        console.info("sizes socket");
         const connection = await mysql.createConnection(dbConfig);
         try {
           await connection.beginTransaction();
