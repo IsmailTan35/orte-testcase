@@ -20,11 +20,10 @@ const apiController = (app: any) => {
         "x-sent": true,
       },
     };
-    console.log(options.dotfiles);
     const fileName: string = req.query.filename;
     res.sendFile(fileName, options, function (err: any) {
       if (err) {
-        console.log(err);
+        console.error(err);
         res.json({ error: "File not found" }).status(404);
       } else {
         console.info("Sent:", fileName);

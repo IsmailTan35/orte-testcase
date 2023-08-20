@@ -16,3 +16,9 @@
   color: white;
   transition: ease-in-out 0.3s;
 }
+
+.button-wrapper.active {
+  background-color: black;
+  color: white;
+  transition: ease-in-out 0.3s;
+}

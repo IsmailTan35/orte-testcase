@@ -43,5 +43,25 @@
 }
 
 .card-footer-item {
+  width: 100%;
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+}
+
+.card-id {
+  display: flex;
+  gap: 10px;
+}
+
+.card-id div:nth-child(2) {
+  color: red;
+}
+
+.card-stock {
+  display: flex;
+  gap: 10px;
+}
+.card-stock div:nth-child(2) {
   color: green;
 }

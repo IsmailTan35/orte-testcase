@@ -7,7 +7,7 @@ interface ICard {
 
 const Card = (props: ICard) => {
   const { item } = props;
-  const { name, description, price, stock, img } = item;
+  const { name, description, price, stock, img, id } = item;
   return (
     <>
       <div className="card-wrapper">
@@ -20,8 +20,16 @@ const Card = (props: ICard) => {
         </div>
         <div>{description}</div>
         <div className="card-footer">
-          <div className="card-footer-item">Stock:</div>
-          <div>{stock}</div>
+          <div className="card-footer-item">
+            <div className="card-id">
+              <div>ID:</div>
+              <div>{id}</div>
+            </div>
+            <div className="card-stock">
+              <div> Stock:</div>
+              <div>{stock}</div>
+            </div>
+          </div>
         </div>
       </div>
     </>

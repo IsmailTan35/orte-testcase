@@ -10,7 +10,7 @@ const Products = () => {
     <>
       {" "}
       <div className="products-wrapper">
-        <div className="products-title">Products</div>
+        <div className="products-title">Products ({products.length})</div>
         <div className="products-container">
           {" "}
           {products.length > 0 ? (
