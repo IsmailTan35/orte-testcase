@@ -7,14 +7,16 @@ function url(): string {
   const protocol: string = window.location.protocol;
 
   return parsed.includes("ismailtan")
-    ? "ortetestcase.ismailtan.dev"
-    : `${protocol}//${hostname}:20000`;
+    ? "https://ortetestcase.ismailtan.dev/api/"
+    : `${protocol}//${hostname}:20000/api/`;
 }
 
-const socketUri = url();
+const socketUri = url()
+  .replace("http://", "")
+  .replace("https://", "")
+  .replace("/api/", "");
 
 const client = io(socketUri, {
-  transports: ["websocket"],
   reconnection: true,
   reconnectionDelay: 2500,
   reconnectionAttempts: 10,
