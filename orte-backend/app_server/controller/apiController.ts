@@ -9,7 +9,7 @@ const apiController = (app: any) => {
   app.get("/api/img/:filename", (req: any, res: any, next: any) => {
     let rawPath = `/pictures/`;
     var options = {
-      root: path.join(path.resolve(), `${rawPath}`),
+      root: path.join(__dirname + `${rawPath}`),
       dotfiles: "deny",
       headers: {
         "x-timestamp": Date.now(),

@@ -8,7 +8,7 @@ function url(): string {
 
   return parsed.includes("ismailtan")
     ? "https://ortetestcase.ismailtan.dev/api"
-    : `${protocol}//${hostname}:20000/api/`;
+    : `${protocol}//${hostname}:20000/api`;
 }
 
 const socketUri = url()
