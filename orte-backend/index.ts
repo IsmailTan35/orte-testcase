@@ -12,4 +12,4 @@ const socket = webSocket(server);
 socketController(socket);
 apiContoller(express);
 
-// const mySqlDb = mySql();
+const mySqlDb = mySql();
