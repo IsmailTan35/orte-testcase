@@ -11,7 +11,10 @@ function url(): string {
     : `${protocol}//${hostname}:20000`;
 }
 
-const socketUri = url();
+const socketUri = url()
+  .replace("http://", "")
+  .replace("https://", "")
+  .replace("/api/", "");
 
 const client = io(socketUri, {
   transports: ["websocket"],
