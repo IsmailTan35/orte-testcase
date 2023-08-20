@@ -12,7 +12,7 @@ const Card = (props: ICard) => {
     <>
       <div className="card-wrapper">
         <div className="card-img-wrapper">
-          <img src={url() + img} className="card-img"></img>
+          <img src={url() + "/img?filename=" + img} className="card-img"></img>
         </div>
         <div className="card-title-wrapper">
           <div className="card-title">{name}</div>
