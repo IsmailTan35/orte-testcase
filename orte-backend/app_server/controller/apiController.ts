@@ -19,6 +19,7 @@ const apiController = (app: any) => {
     var fileName = req.params.filename;
     res.sendFile(fileName, options, function (err: any) {
       if (err) {
+        console.log(err);
         next();
       } else {
         console.info("Sent:", fileName);
